@@ -1,4 +1,4 @@
-name: Deploy
+name: Node.js 16 Example
 
 on:
   push:
