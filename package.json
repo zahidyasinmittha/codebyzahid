@@ -9,8 +9,7 @@
     "predeploy":"npm run build",
     "deploy" : "gh-pages -d build",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy" : "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@react-three/drei": "^9.58.1",
