@@ -4,6 +4,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "scripts": {
     "dev": "vite",
     "predeploy":"npm run build",
