@@ -52,10 +52,9 @@ const ComputersCanvas = () => {
   return (
     <Canvas
       frameloop="demand"
-      shadows
-      dpr={[1, 2]}
+      // dpr={[1, 2]}
       camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25}}
-      gl={{ preserveDrawingBuffer: true }}
+      // gl={{ preserveDrawingBuffer: true }}
       
       style={isMobile ?{
         width : "100vw",
