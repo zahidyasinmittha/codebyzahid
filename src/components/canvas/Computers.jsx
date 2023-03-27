@@ -1,22 +1,10 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF, useProgress } from "@react-three/drei";
-
+import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-  const [loaded, setLoaded] = useState(false);
   const computer =isMobile? useGLTF("./laptop/scene.gltf"): useGLTF("./desktop_pc/scene.gltf");
-  
-  // Delay the loading of the laptop model by 2 seconds
-  isMobile?useEffect(() => {
-    setTimeout(() => {
-      setLoaded(true);
-    }, 2000);
-  }, []):"";
-  
-  if (!loaded) return null; // don't render anything until the laptop model is loaded
-  
   return (
     <mesh>
       <hemisphereLight intensity={isMobile ? 0.4 : 0.15} groundColor="black" />
@@ -35,26 +23,15 @@ const Computers = ({ isMobile }) => {
     </mesh>
   );
 };
-
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
     };
-
-    // Add the callback function as a listener for changes to the media query
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
@@ -63,9 +40,10 @@ const ComputersCanvas = () => {
   return (
     <Canvas
       frameloop="demand"
-      // dpr={[1, 2]}
-      camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25}}
-      // gl={{ preserveDrawingBuffer: true }}
+      dpr={[1, 2]}
+      camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25,near: 0.1,
+        far: 30}}
+      gl={{ preserveDrawingBuffer: true }}
       
       style={isMobile ?{
         width : "100vw",
