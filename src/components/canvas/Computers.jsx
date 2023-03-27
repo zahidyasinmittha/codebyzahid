@@ -5,24 +5,24 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-  const computer = useGLTF("./desktop_pc/scene.gltf");
+  const computer =isMobile? useGLTF("./laptop/scene.gltf"):useGLTF("./desktop_pc/scene.gltf");
   return (
     <mesh>
       <hemisphereLight intensity={0.15} groundColor="black" />
       <spotLight
-        position={[-25, 50, 10]}
+        position={[25, 50, 10]}
         angle={0.12}
         penumbra={1}
-        intensity={1}
+        intensity={0.5}
         castShadow
         shadow-mapSize={1024}
       />
-      <pointLight intensity={0.5} />
+      <pointLight intensity={1} />
       <primitive
         object={computer.scene}
         scale={isMobile ? 1.5 : 0.75}
-        position={isMobile ? [0, -3.3, -4.5] : [0, -3.4, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        position={isMobile ?[0, 0, 0]: [0, -3.4, -1.5]}
+        rotation={isMobile ?[0,0.78,0]:[-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
@@ -57,7 +57,7 @@ const ComputersCanvas = () => {
       frameloop="demand"
       shadows
       dpr={[1, 2]}
-      camera={{ position: [20, 3, 5], fov:isMobile ? 30:25}}
+      camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25}}
       gl={{ preserveDrawingBuffer: true }}
       
       style={isMobile ?{
