@@ -1,25 +1,36 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, Preload, useGLTF, useProgress } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-  const computer =isMobile? useGLTF("./laptop/scene.gltf"):useGLTF("./desktop_pc/scene.gltf");
+  const [loaded, setLoaded] = useState(false);
+  const computer =isMobile? useGLTF("./laptop/scene.gltf"): useGLTF("./desktop_pc/scene.gltf");
+  
+  // Delay the loading of the laptop model by 2 seconds
+  isMobile?useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, 2000);
+  }, []):"";
+  
+  if (!loaded) return null; // don't render anything until the laptop model is loaded
+  
   return (
     <mesh>
-      <hemisphereLight intensity={isMobile? 0.4:0.15} groundColor="black" />
-      {!isMobile?<spotLight
-        position={[25, 50, 10]}
-        angle={0.15}
-        intensity={1}
-      />:""}
+      <hemisphereLight intensity={isMobile ? 0.4 : 0.15} groundColor="black" />
+      {!isMobile ? (
+        <spotLight position={[25, 50, 10]} angle={0.15} intensity={1} />
+      ) : (
+        ""
+      )}
       <pointLight intensity={1} />
       <primitive
         object={computer.scene}
         scale={isMobile ? 1.5 : 0.75}
-        position={isMobile ?[0, 0, 0]: [0, -3.4, -1.5]}
-        rotation={isMobile ?[0,0.78,0]:[-0.01, -0.2, -0.1]}
+        position={isMobile ? [0, 0, 0] : [0, -3.4, -1.5]}
+        rotation={isMobile ? [0, 0.78, 0] : [-0.01, -0.2, -0.1]}
       />
     </mesh>
   );
