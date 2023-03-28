@@ -9,13 +9,13 @@ const Hero = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 4000);
   }, []);
 
   return (
     <section className="relative h-screen w-full mx-auto">
       {isLoading && (
-        {/* <div className="fixed inset-0 w-full h-full bg-black z-50 flex justify-center items-center">
+        <div className="fixed inset-0 w-full h-full bg-black z-50 flex justify-center items-center">
           <motion.div
             animate={{
               scale: [1, 1.5, 1],
@@ -30,7 +30,7 @@ const Hero = () => {
             }}
             className="w-20 h-20 bg-[#915eff] rounded-full"
           />
-        </div> */}
+        </div>
       )}
       <div
         className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex  items-start gap-5`}
