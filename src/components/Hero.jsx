@@ -9,7 +9,7 @@ const Hero = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
@@ -54,7 +54,7 @@ const Hero = () => {
       </div>
       {!isLoading && <ComputersCanvas />}
       <div
-        className="w-full absolute xs:bottom-10 bottom-3 flex
+        className="w-full absolute xs:bottom-10 bottom-8 flex
         justify-center items-center"
       >
         <a href="#about">
