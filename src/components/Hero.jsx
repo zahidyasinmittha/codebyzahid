@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../style";
 import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <section className="relative h-screen w-full mx-auto">
+      {isLoading && (
+        <div className="fixed inset-0 w-full h-full bg-black z-50 flex justify-center items-center">
+          <motion.div
+            animate={{
+              scale: [1, 1.5, 1],
+              rotate: [0, 360, 0],
+              borderRadius: ["20%", "50%", "20%"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut",
+            }}
+            className="w-20 h-20 bg-[#915eff] rounded-full"
+          />
+        </div>
+      )}
       <div
         className={`${styles.paddingX} absolute inset-0 top-[120px] max-w-7xl mx-auto flex  items-start gap-5`}
       >
@@ -26,7 +52,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <ComputersCanvas />
+      {!isLoading && <ComputersCanvas />}
       <div
         className="w-full absolute xs:bottom-10 bottom-3 flex
         justify-center items-center"
