@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { styles } from "../style";
-import { EarthCanvas } from "./canvas";
+import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
   return (
@@ -26,7 +26,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <EarthCanvas />
+      <ComputersCanvas />
       <div
         className="w-full absolute xs:bottom-10 bottom-3 flex
         justify-center items-center"

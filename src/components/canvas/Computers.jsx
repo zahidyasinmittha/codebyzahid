@@ -39,7 +39,7 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameloop="demand"
+      // frameloop="demand"
       dpr={[1, 2]}
       camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25,near: 0.1,
         far: 30}}
@@ -57,7 +57,7 @@ const ComputersCanvas = () => {
         transform: "translate(-50%, -50%)",
       }: {}}
     >
-      <Suspense fallback={<CanvasLoader />}>
+      <Suspense >
         <OrbitControls
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
