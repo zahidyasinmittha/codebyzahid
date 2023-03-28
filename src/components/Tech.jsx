@@ -11,7 +11,7 @@ const Tech = () => {
     // Simulate loading time
     setTimeout(() => {
       setLoading(false);
-    },3700);
+    },4900);
   }, []);
 
   return (

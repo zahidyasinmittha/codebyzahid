@@ -9,7 +9,7 @@ const Hero = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 4000);
+    }, 5000);
   }, []);
 
   return (
