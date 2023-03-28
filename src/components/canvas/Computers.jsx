@@ -13,7 +13,7 @@ const Computers = ({ isMobile }) => {
       ) : (
         ""
       )}
-      <pointLight intensity={1} />
+      <pointLight intensity={0.3} />
       <primitive
         object={computer.scene}
         scale={isMobile ? 1.5 : 0.75}
@@ -43,7 +43,10 @@ const ComputersCanvas = () => {
       dpr={[1, 2]}
       camera={{ position:isMobile? [5, 5, 5]:[20, 3, 5], fov:isMobile ? 30:25,near: 0.1,
         far: 30}}
-      gl={{ preserveDrawingBuffer: true }}
+      gl={{ preserveDrawingBuffer: true ,
+        powerPreference: "high-performance",
+        antialias: false,
+        }}
       
       style={isMobile ?{
         width : "100vw",
