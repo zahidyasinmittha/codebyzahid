@@ -34,7 +34,7 @@ const StarsCanvas = () => {
     // Simulate loading time
     setTimeout(() => {
       setIsLoading(false);
-    },3000);
+    },2900);
   }, []);
   return (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
