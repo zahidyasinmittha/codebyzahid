@@ -13,17 +13,7 @@ const Earth = () => {
 };
 
 const EarthCanvas = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading time
-    setTimeout(() => {
-      setLoading(false);
-    },300);
-  }, []);
   return (
-    <>
-    {!loading &&
     <Canvas
       shadows
       frameloop='demand'
@@ -49,8 +39,6 @@ const EarthCanvas = () => {
         <Preload all />
       </Suspense>
     </Canvas>
-    }
-    </>
   );
 };
 

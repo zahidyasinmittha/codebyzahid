@@ -1,11 +1,18 @@
-import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useState, useRef,useEffect } from "react";
 import emailjs from 'emailjs-com';
 import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
 import { sectionwrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 const Contact = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
   const formRef = useRef();
   const [selectedOption, setSelectedOption] = useState('');
   const [form, setForm] = useState({
@@ -148,7 +155,7 @@ const Contact = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
       >
-        <EarthCanvas />
+      {!isLoading && <EarthCanvas />}
       </motion.div>
     </div>
   );
