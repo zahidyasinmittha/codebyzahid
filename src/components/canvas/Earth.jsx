@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense,useEffect,useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
@@ -13,6 +13,14 @@ const Earth = () => {
 };
 
 const EarthCanvas = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    setTimeout(() => {
+      setLoading(false);
+    },300);
+  }, []);
   return (
     <Canvas
       shadows
@@ -26,6 +34,7 @@ const EarthCanvas = () => {
         position: [-4, 3, 6],
       }}
     >
+      {!loading &&
       <Suspense fallback={null}>
         <OrbitControls
           autoRotate
@@ -37,6 +46,7 @@ const EarthCanvas = () => {
 
         <Preload all />
       </Suspense>
+      }
     </Canvas>
   );
 };
