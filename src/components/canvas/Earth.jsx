@@ -22,6 +22,8 @@ const EarthCanvas = () => {
     },300);
   }, []);
   return (
+    <>
+    {!loading &&
     <Canvas
       shadows
       frameloop='demand'
@@ -34,8 +36,8 @@ const EarthCanvas = () => {
         position: [-4, 3, 6],
       }}
     >
-      {!loading &&
-      <Suspense fallback={null}>
+      
+      <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           autoRotate
           enableZoom={false}
@@ -46,8 +48,9 @@ const EarthCanvas = () => {
 
         <Preload all />
       </Suspense>
-      }
     </Canvas>
+    }
+    </>
   );
 };
 
